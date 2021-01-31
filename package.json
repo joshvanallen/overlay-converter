@@ -1,13 +1,33 @@
 {
   "name": "overlay-converter",
   "version": "0.0.0",
+  "main": "electron/dist/main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:local:angular":"ng build --base-href ./",
+    "build:local:electron":"tsc --p electron",
+    "build:local:project": "npm run build:local:electron && npm run build:local:angular",
+    "build:prod:angular": "ng build --prod --base-href ./",
+    "build:prod:electron":"tsc --p electron",
+    "build:prod:project":"npm run build:prod:electron && npm run build:prod:angular",
+    "start:electron":"electron .",
+    "package:windows":"electron-builder -p never --win"
+  },
+  "build": {
+    "appId": "com.jvasoftware.overlayconverter",
+    "productName":"Overlay Converter",
+    "files": [
+      "electron/dist/main.js",
+      "dist/overlay-converter"
+    ],
+    "win": {
+      "target": "nsis"
+    }
   },
   "private": true,
   "dependencies": {
@@ -30,6 +50,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "electron": "^11.2.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.2.0",
