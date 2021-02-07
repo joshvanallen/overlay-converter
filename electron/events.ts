@@ -28,7 +28,7 @@ ipcMain.on(ServerEvent.ShowDestinationPathDialog, async () => {
 });
 
 ipcMain.on(ServerEvent.ExecuteConversion, async (event, request) => {
-    const { source, destination } = request;
+    const { source, destination } = request.body;
     let progressResponse =  new ResponseBuilder<any>().setStatusCode(200).setBody({
         progress: ConvertProgress.CheckingSource
     }).build();

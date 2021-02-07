@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 
-import { ServerEvent, ClientEvent } from '../../shared';
+import { ServerEvent, ClientEvent, RequestBuilder } from '../../shared';
 
 import { ElectronService } from './services/electron.service';
 
@@ -45,10 +45,12 @@ export class AppComponent {
   }
 
   convertSource(){
-    this.electron.getIPC().send(ServerEvent.ExecuteConversion, {
+    const request = new RequestBuilder<any>().setBody({
       source: this.sourceFilePath,
       destination: this.destinationPath
-    });
+    }).build();
+    
+    this.electron.getIPC().send(ServerEvent.ExecuteConversion, request);
     this.isConverting = true;
     this.cdr.detectChanges();
   }

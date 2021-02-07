@@ -1,7 +1,7 @@
 export class ResponseBuilder<BodyType> {
-    statusCode: number = 0;
-    body: BodyType | null = null;
-    developerText: string = '';
+    private statusCode: number = 0;
+    private body: BodyType | null = null;
+    private developerText: string = '';
     
     constructor(){}
 
