@@ -10,18 +10,18 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:local:angular:watch": "ng build --base-href ./ --watch",
-    "build:local:angular":"ng build --base-href ./",
-    "build:local:electron":"tsc --p electron",
+    "build:local:angular": "ng build --base-href ./",
+    "build:local:electron": "tsc --p electron",
     "build:local:project": "npm run build:local:electron && npm run build:local:angular",
     "build:prod:angular": "ng build --prod --base-href ./",
-    "build:prod:electron":"tsc --p electron",
-    "build:prod:project":"npm run build:prod:electron && npm run build:prod:angular",
-    "start:electron":"electron .",
-    "package:windows":"electron-builder -p never --win"
+    "build:prod:electron": "tsc --p electron",
+    "build:prod:project": "npm run build:prod:electron && npm run build:prod:angular",
+    "start:electron": "electron .",
+    "package:windows": "electron-builder -p never --win"
   },
   "build": {
     "appId": "com.jvasoftware.overlayconverter",
-    "productName":"Overlay Converter",
+    "productName": "Overlay Converter",
     "files": [
       "electron/dist/main.js",
       "dist/overlay-converter"
@@ -40,6 +40,7 @@
     "@angular/platform-browser": "~11.1.1",
     "@angular/platform-browser-dynamic": "~11.1.1",
     "@angular/router": "~11.1.1",
+    "extract-zip": "^2.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
