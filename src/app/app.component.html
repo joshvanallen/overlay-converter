@@ -312,7 +312,7 @@
 
   <p>Source Overlay File</p>
   <p *ngIf="sourceFilePath">{{sourceFilePath}}</p>
-  <button type="button" (click)="showSourceDialog()">Source File</button>
+  <button type="button" *ngIf="!isConverting" (click)="showSourceDialog()">Source File</button>
   <br />
   <br />
   <br />
@@ -320,7 +320,14 @@
   <br />
   <p>Destination Directory</p>
   <p *ngIf="destinationPath">{{destinationPath}}</p>
-  <button type="button" (click)="showDestinationDialog()">Destination Directory</button>
+  <button type="button" *ngIf="!isConverting" (click)="showDestinationDialog()">Destination Directory</button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <p *ngIf="isConverting">Current Stage: {{convertingStatus}}</p>
+  <button type="button" (click)="convertSource()" *ngIf="sourceFilePath && destinationPath && !isConverting">Convert</button>
 
 
   <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">

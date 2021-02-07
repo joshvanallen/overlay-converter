@@ -1,7 +1,7 @@
 import { BrowserWindow, dialog, ipcMain } from "electron";
 import { OpenDialogReturnValue } from "electron/main";
 
-import { ServerEvent, ClientEvent } from '@jva/shared';
+import { ServerEvent, ClientEvent, ConvertProgress } from '@jva/shared';
 
 ipcMain.on(ServerEvent.ShowSourceFileDialog, async ()=>{
     const filePath = await dialog.showOpenDialog(BrowserWindow.getFocusedWindow()!, {
@@ -24,3 +24,17 @@ ipcMain.on(ServerEvent.ShowDestinationPathDialog, async ()=>{
         destinationPath
     })
 });
+
+ipcMain.on(ServerEvent.ExecuteConversion, async (event, request)=> {
+    const {source, destination} = request;
+    console.log(source);
+    console.log(destination);
+   BrowserWindow.getFocusedWindow()!.webContents.send(ClientEvent.ConvertingProgress, {
+       progress: ConvertProgress.CheckingDest
+   });
+
+});
+
+function checkDestination(){
+
+}
