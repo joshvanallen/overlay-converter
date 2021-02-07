@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 
-import { ServerEvent, ClientEvent } from '@jva/shared';
+import { ServerEvent, ClientEvent } from '../../shared';
 
 import { ElectronService } from './services/electron.service';
 
@@ -16,15 +16,15 @@ export class AppComponent {
   convertingStatus: string = '';
   constructor(private electron: ElectronService, private cdr: ChangeDetectorRef){
     this.electron.getIPC().on(ClientEvent.SelectedSourceFile,(event, response:any)=>{
-      this.sourceFilePath = response.filePath;
+      this.sourceFilePath = response.body.filePath;
       this.cdr.detectChanges();
     });
     this.electron.getIPC().on(ClientEvent.SelectedDestinationPath,(event, response:any)=>{
-      this.destinationPath = response.destinationPath;
+      this.destinationPath = response.body.destinationPath;
       this.cdr.detectChanges();
     });
     this.electron.getIPC().on(ClientEvent.ConvertingProgress, (event, response)=>{
-      this.convertingStatus = response.progress;
+      this.convertingStatus = response.body.progress;
       this.cdr.detectChanges();
     });
     this.electron.getIPC().on(ClientEvent.ConvertComplete, ()=>{

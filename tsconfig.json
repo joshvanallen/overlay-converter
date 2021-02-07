@@ -21,7 +21,7 @@
     "allowSyntheticDefaultImports":true,
     "esModuleInterop": true,
     "paths":{
-      "@jva/shared":["shared/index.ts"]
+      // "@jva/shared":["shared/index.ts"]
     }
   },
   "angularCompilerOptions": {
